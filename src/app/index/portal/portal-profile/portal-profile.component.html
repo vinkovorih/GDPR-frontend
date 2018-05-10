@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <br>
+    <mat-card *ngIf="this.profile">
+      <mat-card-header>
+        <mat-card-subtitle>
+          <mat-list>
+            <h3 mat-subheader>Korisničko ime</h3>
+            <mat-list-item>{{profile.username}}</mat-list-item>
+            <h3 mat-subheader>Ime</h3>
+            <mat-list-item>{{profile.firstName}}</mat-list-item>
+            <h3 mat-subheader>Prezime</h3>
+            <mat-list-item>{{profile.lastName}}</mat-list-item>
+            <h3 mat-subheader>E-mail adresa</h3>
+            <mat-list-item>{{profile.email}}</mat-list-item>
+            <h3 mat-subheader>Privilegije</h3>
+            <mat-list-item>{{profile.role.toUpperCase()}}</mat-list-item>
+          </mat-list>
+        </mat-card-subtitle>
+        <img mat-card-avatar style="margin:12px;" matTooltip="Promijenite fotografiju" (click)="imgFileInput.click()" *ngIf="profile?.img != null; else sample"
+             mat-card-image [src]="'data:image/jpeg;base64,' + profile?.img | safeHtml" align="left">
+        <ng-template #sample><img mat-card-avatar matTooltip="Promijenite fotografiju" [src]="this.sampleImg" (click)="imgFileInput.click()"></ng-template>
+
+      </mat-card-header>
+      <mat-card-actions style="text-align:center">
+        <button mat-raised-button="primary" (click)="backToPortal()">Povratak</button>
+        <button mat-raised-button="primary" (click)="editUser()">Izmjeni podatke</button>
+        <button mat-raised-button="primary" (click)="changePassword()">Izmjena lozinke</button>
+        <button mat-raised-button="primary" (click)="this.deleteUser()">Izbriši račun</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+<input hidden #imgFileInput type="file" style="margin:0 auto;" (change)="fileChangeEvent($event)" />
+
+<p-dialog header="Izmjena fotografije" width="600" height="600" [(visible)]="this.showChangePhoto">
+  <image-cropper *ngIf="showcropper"
+                 [imageChangedEvent]="imageChangedEvent"
+                 [maintainAspectRatio]="true"
+                 [aspectRatio]="1 / 1"
+                 [resizeToWidth]="300"
+                 format="png"
+                 (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+    <br><br>
+  <button mat-raised-button="warn" (click)="this.showChangePhoto = !this.showChangePhoto">Odustani</button>
+  <button mat-raised-button="warn" (click)="updatePictureForUser()">Spremi izmjene</button>
+</p-dialog>
+
+<p-confirmDialog key="danger" header="Upozorenje!" acceptLabel="Da" rejectLabel="Ne" width="425"></p-confirmDialog>

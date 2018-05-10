@@ -1,0 +1,54 @@
+<mat-card>
+  <div class="header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Pretražite korisnike">
+    </mat-form-field>
+  </div>
+  <br><br>
+  <mat-table #table [dataSource]="dataSource" class="table">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> ID korisnika</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Korisničko ime</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="first">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Ime</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="last">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Prezime</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="authority">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Ovlasti</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> <button mat-raised-button="warn" *ngIf="row.role != 'admin'" (click)="changeAuthorities(row.id)">Unaprijedi<mat-icon>supervisor_account</mat-icon></button>
+        <button mat-raised-button="warn" *ngIf="row.role == 'admin'" (click)="changeAuthorities(row.id)">Ukloni prava<mat-icon>perm_identity</mat-icon></button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="del">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Obriši</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell" (click)="this.deleteUser(row.id)"> <button mat-raised-button="warn">Ukloni <mat-icon>close</mat-icon></button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+    <mat-row class="example-row" *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [length]="this.users.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 50]">
+  </mat-paginator>
+  <br>
+</mat-card>
+<p-growl [(value)]="this.msgs"></p-growl>
+
+<p-confirmDialog key="warn" header="Upozorenje!" acceptLabel="Da" rejectLabel="Ne" width="425"></p-confirmDialog>

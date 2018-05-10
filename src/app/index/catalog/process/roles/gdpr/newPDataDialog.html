@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Dodavanje osobnog podatka</h1>
+<div mat-dialog-content>
+  <br>
+  <form [formGroup]="controllerA">
+
+    <mat-form-field>
+      <mat-select placeholder="Odaberite osobni podatak" [(ngModel)]="data.fkpd" formControlName="fkpd">
+        <mat-option *ngFor="let pd of data.pd" [value]="pd.id">
+          {{ pd.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+      <mat-checkbox color="warn" [(ngModel)]="data.needed" formControlName="needed">Potreban u procesu</mat-checkbox>
+    <hr>
+      <mat-checkbox color="warn" [(ngModel)]="data.third" formControlName="third">Koristi treća strana</mat-checkbox>
+
+    <mat-form-field>
+      <mat-select placeholder="Odaberite sustave prikupljanja" formControlName="apps" [(ngModel)]="data.applications" multiple>
+        <mat-option *ngFor="let app of data.apps" [value]="app.id">{{app.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+  </form>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="warning" (click)="this.add(data)" [disabled]="this.controllerA.invalid" [mat-dialog-close]="data">Dodaj</button>
+</div>

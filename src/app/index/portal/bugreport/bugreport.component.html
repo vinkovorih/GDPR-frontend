@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-title>Prijava greške</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="controller">
+        <mat-form-field>
+          <input matInput placeholder="Naslov greške" [(ngModel)]="error.title" maxlength="50" formControlName="title">
+          <mat-hint align="end">{{error.title?.length || 0}}/50</mat-hint>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <textarea matInput placeholder="Sadržaj greške" [(ngModel)]="error.content" maxlength="50" rows="5" formControlName="content"></textarea>
+          <mat-hint align="end">{{error.content?.length || 0}}/50</mat-hint>
+        </mat-form-field>
+        <br>
+        <br>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <span>
+      <button mat-raised-button="warn" (click)="backToPortal()">Povratak na portal</button>
+      <button mat-raised-button="warn" (click)="report()" [disabled]="this.controller.invalid">Prijavi grešku</button>
+      <mat-spinner *ngIf="loading" [diameter]="33"></mat-spinner></span>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<p-growl [(value)]="msgs"></p-growl>

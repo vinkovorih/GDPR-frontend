@@ -1,0 +1,48 @@
+<mat-card>
+  <div class="header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Pretražite vijesti">
+    </mat-form-field>
+  </div>
+  <br><br>
+  <mat-table #table [dataSource]="dataSource" class="table">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> ID vijesti</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Autor posta</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.author}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Naslov posta</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.title}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Datum posta</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.date | date:'dd.MM.yyyy'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="del">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Obriši</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell" (click)="this.deleteNews(row.id)"> <mat-icon>close</mat-icon> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+    <mat-row class="example-row" *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [length]="this.news.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 50]">
+  </mat-paginator>
+  <br>
+</mat-card>
+<p-growl [(value)]="this.msgs"></p-growl>
+
+<p-confirmDialog key="news" header="Upozorenje!" acceptLabel="Da" rejectLabel="Ne" width="425"></p-confirmDialog>

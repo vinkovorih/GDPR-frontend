@@ -1,0 +1,17 @@
+.wrapper{
+  background: url('../../../../assets/images/background.png');
+  background-repeat: no-repeat !important;
+  background-color:#000000;
+  min-height:92vh;
+}
+
+mat-card{
+  width:40%;
+  margin:0 auto;
+}
+mat-form-field{
+  width:100%;
+}
+mat-spinner{
+  margin: 0 auto;
+}

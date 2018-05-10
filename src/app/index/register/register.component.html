@@ -1,0 +1,54 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<div class="wrapper">
+    <div class="container">
+
+    <br>
+    <br>
+    <br>
+    <form [formGroup]="controller">
+      <mat-form-field>
+        <input matInput placeholder="Ime" [(ngModel)]="register.firstname" maxlength="30" formControlName="firstname">
+        <mat-hint align="end">{{register.firstname?.length || 0}}/30</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Prezime" [(ngModel)]="register.lastname" maxlength="30" formControlName="lastname">
+        <mat-hint align="end">{{register.lastname?.length || 0}}/30</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Korisničko ime" [(ngModel)]="register.username" maxlength="50" formControlName="username">
+        <mat-hint align="end">{{register.username?.length || 0}}/50</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="email" placeholder="E-mail" [(ngModel)]="register.email" maxlength="50" formControlName="email">
+        <mat-hint align="end">{{register.email?.length || 0}}/50</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Lozinka" [(ngModel)]="register.password" maxlength="30" formControlName="password">
+        <mat-hint align="end">{{register.password?.length || 0}}/30</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Ponovite lozinku" [(ngModel)]="passwordRepeat" maxlength="30" formControlName="password2">
+        <mat-hint align="end">{{passwordRepeat?.length || 0}}/30</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-select placeholder="Odaberite odjel" [(ngModel)]="register.dep" formControlName="deps">
+            <mat-option *ngFor="let d of this.deps" [value]="d.id">
+              {{ d.name }}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <button mat-raised-button="warn" routerLink="/">Odustani od registracije</button>
+      <button mat-raised-button="primary" [disabled]="this.controller.invalid" (click)="registerUser();">Registracija</button>
+
+    </form>
+  </div>
+</div>

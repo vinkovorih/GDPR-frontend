@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <mat-grid-list cols="2" rowHeight="40px" style="border-top:1px solid #eeffff;">
+    <mat-grid-tile  [rowspan]="1" class="navi"><button mat-button routerLink="">Povratak na portal&nbsp;<mat-icon>arrow_left</mat-icon></button></mat-grid-tile>
+      <mat-grid-tile [rowspan]="1" class="navi"><button mat-button (click)="goToCatalog()">Registar&nbsp;<mat-icon>view_carousel</mat-icon></button></mat-grid-tile>
+  </mat-grid-list>
+<app-users></app-users>
+<br>
+  <app-news></app-news>
+<br>
+<app-deps></app-deps>
+</div>

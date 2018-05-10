@@ -1,0 +1,20 @@
+button{
+  color:white;
+}
+td{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+h3{
+  color:white;
+}
+.wrapper{
+  background: url('../../../../assets/images/background.png');
+  background-repeat: no-repeat !important;
+  background-color:#000000;
+  min-height:92vh;
+}
+.navi{
+  color:white;
+  background:rgba(0,0,0,1);
+}

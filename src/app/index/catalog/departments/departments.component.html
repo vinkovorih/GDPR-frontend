@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <br>
+  <div class="container">
+<mat-card>
+  <button mat-raised-button="warn" routerLink="">Povratak na portal</button>
+  <br>
+  <br>
+  <mat-card-subtitle>Odaberite odjel</mat-card-subtitle>
+  <div class="header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Pretražite odjele">
+    </mat-form-field>
+  </div>
+  <br><br>
+  <mat-table #table [dataSource]="dataSource" class="table">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> ID odjela</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Naziv odjela</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="short">
+      <mat-header-cell *matHeaderCellDef class="table-header-cell"> Skraćeni naziv</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="example-cell"> {{row.shortname}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+    <mat-row class="example-row" (click)="selectdep(row);" *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [length]="this.deps.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 50]">
+  </mat-paginator>
+  <br>
+</mat-card>
+<p-growl [(value)]="this.msgs"></p-growl>
+  </div>
+</div>

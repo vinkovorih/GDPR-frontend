@@ -1,0 +1,18 @@
+mat-form-field{
+  width:100%;
+}
+
+#container{
+  width: 750px;
+}
+#floated {
+  float: left;
+  width: 450px;
+}
+img{
+  max-width:400px;
+  text-align: center;
+}
+*{
+  text-align: justify;
+}

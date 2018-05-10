@@ -1,0 +1,20 @@
+.wrapper{
+  background: url('../../../../assets/images/background.png');
+  background-repeat: no-repeat !important;
+  background-color:#000000;
+  min-height:92vh;
+}
+
+.mat-card-avatar{
+  width:200px;
+  height:200px;
+  border:1px solid #ffffff;
+  cursor:pointer;
+}
+mat-card{
+  width:50%;
+  margin:0 auto;
+}
+button{
+  color:white;
+}

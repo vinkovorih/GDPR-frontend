@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Dodavanje novog sustava</h1>
+<div mat-dialog-content>
+  <br>
+  <form [formGroup]="controllerA">
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.name" placeholder="Naziv sustava" maxlength="50" formControlName="name">
+      <mat-hint align="end">{{data.name?.length}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="data.desc" placeholder="Opis sustava" rows="5" maxlength="300" formControlName="desc"></textarea>
+      <mat-hint align="end">{{data.desc?.length}}/300</mat-hint>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.owner" placeholder="Vlasnik sustava" maxlength="100" formControlName="owner">
+      <mat-hint align="end">{{data.owner?.length}}/100</mat-hint>
+    </mat-form-field>
+  </form>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="warning" (click)="this.add(data)" [disabled]="this.controllerA.invalid" [mat-dialog-close]="data">Dodaj</button>
+</div>

@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <br>
+  <br>
+  <div class="container">
+    <mat-card>
+      <mat-card-subtitle>Proces: {{this.process}}</mat-card-subtitle>
+      <mat-card-subtitle>Odaberite ulogu</mat-card-subtitle>
+      <br>
+      <div class="header">
+        <mat-form-field floatPlaceholder="never">
+          <input matInput #filter placeholder="Pretražite uloge">
+        </mat-form-field>
+      </div>
+      <br><br>
+      <mat-table #table [dataSource]="dataSource" class="table">
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell"> ID </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="example-cell"> {{row.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell"> Naziv uloge</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="example-cell"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell"> Opis uloge</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="example-cell"> {{row.desc}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+        <mat-row class="example-row" (click)="selectRole(row)" *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+                     [length]="this.roles.length"
+                     [pageIndex]="0"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 50]">
+      </mat-paginator>
+      <br>
+      <button mat-raised-button="warn" (click)="backToProcesses()">Povratak</button>
+      <span class="spacer"></span>
+      <button mat-raised-button="warn" (click)="addRow()">Dodaj novu ulogu</button>
+    </mat-card>
+  </div>
+</div>
+<p-growl [(value)]="this.msgs"></p-growl>

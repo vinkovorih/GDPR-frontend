@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Ažuriranje podataka</h1>
+<div mat-dialog-content>
+  <br>
+  <form [formGroup]="controller">
+    <mat-form-field>
+      <input matInput placeholder="Korisničko ime" [(ngModel)]="data.username" maxlength="50" formControlName="username">
+      <mat-hint align="end">{{data.username?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput placeholder="Ime" [(ngModel)]="data.firstName" maxlength="50" formControlName="firstName">
+      <mat-hint align="end">{{data.firstName?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput placeholder="Prezime" [(ngModel)]="data.lastName" maxlength="50" formControlName="lastName">
+      <mat-hint align="end">{{data.lastName?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput placeholder="E-mail adresa" [(ngModel)]="data.email" maxlength="50" formControlName="email">
+      <mat-hint align="end">{{data.email?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+    <br>
+  </form>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="warning" (click)="this.update(data)" [disabled]="this.controller.invalid" [mat-dialog-close]="data">Ažuriraj</button>
+</div>

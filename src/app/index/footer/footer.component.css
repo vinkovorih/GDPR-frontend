@@ -1,0 +1,9 @@
+*{
+  position: fixed;
+  bottom:0;
+}
+
+mat-toolbar{
+  height:3%;
+  background-color:#000000;
+}

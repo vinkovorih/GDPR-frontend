@@ -1,0 +1,25 @@
+<p-growl [(value)]="msgs"></p-growl>
+<mat-toolbar>
+  <br>
+  <div class ="padd container">
+  <span class="spacer"></span>
+    <div *ngIf="this.user.user == null; else template">
+      <form [formGroup]="controller">
+  <mat-form-field>
+    <input matInput [(ngModel)]="this.login.username" placeholder = "Korisničko ime:" formControlName="username">
+    <mat-hint align="start">Nemate  korisnički račun? <a routerLink="/register">Registrirajte se</a></mat-hint>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field>
+    <input matInput type="password" [(ngModel)]="this.login.password" placeholder = "Lozinka:" formControlName="password">
+  </mat-form-field>
+        <button mat-raised-button="warn" [disabled]="this.controller.invalid" (click)="this.loginUser()">Prijava</button>
+    </form>
+    </div>
+    <ng-template #template>
+      <p class="name">Dobrodošli, {{this.user.user.firstName}} {{this.user.user.lastName}}&nbsp;&nbsp;&nbsp;</p>
+      <button mat-raised-button="warn" class="btnpadd" (click)="this.logout()">Odjava</button>
+    </ng-template>
+  </div>
+</mat-toolbar>
+<p-confirmDialog key="logout" header="Odjava" acceptLabel="Da" rejectLabel="Ne" width="425"></p-confirmDialog>

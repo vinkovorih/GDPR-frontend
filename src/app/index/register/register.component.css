@@ -1,0 +1,19 @@
+.wrapper{
+  background: url('../../../assets/images/background.png');
+  background-repeat: no-repeat !important;
+  background-color:#000000;
+  min-height:92vh;
+}
+
+mat-form-field{
+  margin:0 auto;
+  width:50%;
+  font-size:12px;
+  color:white;
+}
+form{
+  text-align:center;
+}
+button{
+  color:white;
+}

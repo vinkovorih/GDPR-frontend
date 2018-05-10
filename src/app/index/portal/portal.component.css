@@ -1,0 +1,57 @@
+.wrapper{
+  background: url('../../../assets/images/background.png');
+  background-repeat: no-repeat !important;
+  background-color:#000000;
+  min-height:92vh;
+}
+mat-card{
+  width: 100%;
+  height:100%;
+  background: rgba(0,0,0,0.55);
+  color:white;
+  border-bottom: 2px solid #075672;
+}
+
+mat-card p{
+  max-height: 130px;
+  font-size: 15px;
+  text-wrap: normal;
+  overflow:hidden;
+}
+
+.banner{
+  background:rgba(0,0,0,0.55);
+  border-bottom:2px solid #075672;
+}
+h2{
+  color:white;
+  font-family: 'Syncopate';
+  font-size:80px;
+  font-weight: bold;
+
+}
+
+img.mat-card-image{
+  max-width:33%;
+  margin-right:20px;
+}
+
+.ui-overlaypanel{
+  position:relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navi{
+  background: rgba(0,0,0,0.77);
+  color:white;
+}
+
+.ui-sidebar{
+  color:white;
+  background: rgba(0,0,0,0.66);
+}
+
+.spanning{
+  float:right;
+  cursor:pointer;
+}

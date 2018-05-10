@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <br>
+  <div class="container">
+    <mat-card>
+        <mat-card-subtitle>Proces: {{this.process}}</mat-card-subtitle>
+        <mat-card-subtitle>Uloga: {{this.role}}</mat-card-subtitle>
+<br>
+      <mat-card-subtitle>Odaberite ili dodajte osobni podatak</mat-card-subtitle>
+      <div class="header">
+        <mat-form-field floatPlaceholder="never">
+          <input matInput #filter placeholder="Pretražite osobne podatke">
+        </mat-form-field>
+      </div>
+      <br><br>
+      <mat-table #table [dataSource]="dataSource" class="table">
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell">ID</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell">Osobni podatak</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.pdName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="needed">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell">Potreban</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-icon *ngIf="row.needed;else needed">done</mat-icon>
+            <ng-template #needed><mat-icon>close</mat-icon></ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="third">
+          <mat-header-cell *matHeaderCellDef class="table-header-cell">Treća strana</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-icon *ngIf="row.third;else third">done</mat-icon>
+            <ng-template #third><mat-icon>close</mat-icon></ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+        <mat-row class="example-row" (click)="selectedpd(row);" *matRowDef="let row; columns:displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+                     [length]="this.gdpr.length"
+                     [pageIndex]="0"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 50]">
+      </mat-paginator>
+      <button mat-raised-button="warn" (click)="backToRoles()">Povratak</button>
+      <button mat-raised-button="warn" (click)="addGDPR()">Dodaj osobni podatak u ulogu</button>
+      <button mat-raised-button="warn" (click)="addPD()">Dodaj novi osobni podatak</button>
+      <button mat-raised-button="warn" (click)="addAPP()">Dodaj sustav</button>
+    </mat-card>
+    <p-growl [(value)]="this.msgs"></p-growl>
+  </div>
+</div>

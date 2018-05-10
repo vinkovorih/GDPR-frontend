@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+
+  <div id="container">
+    <div id="floated">
+      <br *ngIf="data.image != null">
+      <img style="margin-left:30px;" *ngIf="data.image != null" mat-card-image [src]="'data:image/jpeg;base64,' + data.image | safeHtml" align="left">
+    </div>
+    <p>{{data.large}}</p>
+    <hr>
+    Pisao korisnik: {{data.author}}
+    <br>
+    Datum: {{data.date | date}}
+  </div>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Zatvori</button>
+</div>

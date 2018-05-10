@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Dodavanje uloge</h1>
+<div mat-dialog-content>
+  <br>
+  <form [formGroup]="controllerA">
+
+    <mat-form-field>
+      <input matInput placeholder="Naziv uloge" [(ngModel)]="data.name" maxlength="80" formControlName="name">
+      <mat-hint align="end">{{data.name?.length || 0}}/80</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Opis uloge" [(ngModel)]="data.desc" maxlength="100" rows = 5 formControlName="desc"></textarea>
+      <mat-hint align="end">{{data.desc?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+    <br>
+  </form>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="warning" (click)="this.add(data)" [disabled]="this.controllerA.invalid" [mat-dialog-close]="data">Dodaj</button>
+</div>

@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Dodavanje novog posta</h1>
+<div mat-dialog-content>
+  <br>
+  <form [formGroup]="controller">
+    <mat-form-field>
+      <input matInput placeholder="Naslov posta" [(ngModel)]="data.title" maxlength="50" formControlName="title">
+      <mat-hint align="end">{{data.title?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput placeholder="Banner posta" [(ngModel)]="data.content" maxlength="100" formControlName="content">
+      <mat-hint align="end">{{data.content?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Sadržaj posta" [(ngModel)]="data.large" maxlength="1000" rows="5" formControlName="large"></textarea>
+      <mat-hint align="end">{{data.large?.length || 0}}/1000</mat-hint>
+    </mat-form-field>
+    <br>
+  </form>
+  <button type="button" *ngIf="!showcropper" mat-raised-button (click)="imgFileInput.click()">Odaberite sliku</button>
+  <button type="button" *ngIf="showcropper" mat-raised-button (click)="imgFileInput.click()">Odaberite drugu</button>
+  <input hidden #imgFileInput type="file" style="margin:0 auto;" (change)="fileChangeEvent($event)" />
+  <image-cropper style="width:75%;text-align:center" *ngIf="showcropper"
+                 [imageChangedEvent]="imageChangedEvent"
+                 [maintainAspectRatio]="true"
+                 [aspectRatio]="1 / 1"
+                 [resizeToWidth]="300"
+                 format="png"
+                 (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+  <br>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="warning" (click)="this.add(data)" [disabled]="this.controller.invalid" [mat-dialog-close]="data">Dodaj</button>
+</div>

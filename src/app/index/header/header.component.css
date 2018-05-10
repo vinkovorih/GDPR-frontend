@@ -1,0 +1,27 @@
+mat-toolbar{
+  background-color:#000000;
+  height:8vh;
+}
+
+mat-form-field{
+  font-size:12px;
+}
+.spacer{
+  flex:1 1 auto;
+}
+.padd{
+  display:flex;
+  padding-top:5px;
+}
+.name{
+  font-size:13px;
+  padding-top:8px;
+}
+
+.padding{
+  padding-top:10px;
+}
+
+.btnpadd{
+  padding-bottom: 5px;
+}

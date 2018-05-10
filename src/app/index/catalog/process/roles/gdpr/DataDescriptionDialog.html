@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{data.pdName}}</h1>
+<div mat-dialog-content>
+  Osobni podatak <i><strong>{{data.pdName}}</strong></i> koristi se u <span *ngIf="data.apps.length>1;else temp3">sustavima</span> <i><span *ngFor="let x of data.apps">{{x.name}}, </span></i> te se <span *ngIf="data.needed;else temp1">prikuplja u procesu</span> i <span *ngIf="data.third;else temp2">prosljeđuje se trećim stranama.</span>
+  <ng-template #temp1>ne prikupljaju u procesu</ng-template>
+  <ng-template #temp2>ne prosljeđuje se trećim stranama.</ng-template>
+  <ng-template #temp3>sustavu</ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="data" (click)="onNoClick()">Zatvori</button>
+</div>
